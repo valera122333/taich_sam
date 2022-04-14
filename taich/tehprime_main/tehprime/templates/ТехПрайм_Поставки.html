@@ -1,0 +1,29 @@
+{% extends 'home.html' %} {% block content %}
+
+
+
+<div class="row my-4 text-center  ">
+
+    <h3>Компания отличается от остальных тем, что она:</h3>
+    <h5 class='text-start lh-base'>ООО «ТехПрайм» (входит в Холдинг МАСКОМ Восток) оказывает услуги по поставке программного обеспечения и оборудования ведущих отечественных и зарубежных производителей.</h5>
+    <h5 class='text-start lh-base'></h5>
+    {% for postavka in postavki %}
+    <div class="col-md-4 p-4">
+        <div class="  ">
+
+
+            <div class="card-body text-start lh-base">
+
+                <h4 class="card-title">{{postavka.title}}</h4>
+                <p class="card-text">{{postavka.sub_title }}</p>
+                <div class=" "><a class="btn btn-primary " href="{% url 'postavki_detail' postavka.id %}">Подробнее</a></div>
+
+
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

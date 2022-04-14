@@ -1,0 +1,32 @@
+{% extends 'home.html' %} {% block content %}
+
+<div class="row my-4 text-center  ">
+
+    <h3>Проектная работа</h3>
+    <h5 class='text-start lh-base'>Если потребуется, мы можем поставить и одну единицу офисной техники, но это не так интересно, как обдумывать и реализовывать крупные проекты. Ведь, создавая спланированную техническую инфраструктуру, можно не только хорошо сэкономить на издержках,
+        но и совершить инновационный рывок в работе вашего предприятия.</h5>
+    <h5 class='text-start lh-base'>А работаем мы со всеми основными дистрибьюторами и вендорами. И готовы также найти и поставить вам специализированное оборудование, неизвестное широкому кругу пользователей.</h5>
+
+
+    {% for proect in projects %}
+    <div class="col-md-4 p-4">
+        <div class="card   ">
+            <img src="{{proect.image.url }}" class="card-img-top" />
+
+            <div class="card-body text-start lh-base">
+
+                <h2 style='height:150px;'>{{ proect.title }}</h2>
+                <p>{{ proect.description|truncatechars:100 }}</p>
+                <div class=" "><a class="btn btn-primary " href="{% url 'project_detail' proect.id %}">Подробнее</a></div>
+                {% if request.user.is_authenticated %} {% if fav %} {% else %}
+                <div class=" "><a href="{% url 'favourite_add' proect.id %}" class="btn btn-outline-primary">Добавить в избранное</a></div>
+                {% endif %} {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</div>
+
+{% endblock %}
